@@ -49,7 +49,7 @@ int interpVal2 = 0;
 int maxCapVal = 34000;
 bool moving1 = 0;
 bool moving2 = 0;
-int capThresh = 33000;
+int capThresh = 35000;
 //----{SETUP}-----------------------------------------------------//
 
 void setup() {

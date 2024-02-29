@@ -19,7 +19,7 @@ Talkie voice;
 
 int capPin = 9;
 int capThresh1 = 35000;
-int capThresh2 = 36000;
+int capThresh2 = 15000;
 int capVal = 0;
 
 void setup() {
@@ -49,4 +49,5 @@ void loop() {
     voice.say(spa_THAT);
     voice.say(spa_AGAIN);
   }
+  delay(100);
 }
