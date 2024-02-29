@@ -46,10 +46,10 @@ int step2 = 0;
 int numSteps = 20;
 int interpVal1 = 0;
 int interpVal2 = 0;
-int maxCapVal = 33000;
+int maxCapVal = 34000;
 bool moving1 = 0;
 bool moving2 = 0;
-int capThresh = 32000;
+int capThresh = 33000;
 //----{SETUP}-----------------------------------------------------//
 
 void setup() {
@@ -103,7 +103,7 @@ void loop() {
     if (moving1 == false) {
       val1 = touchRead(capIn1);
       Serial.print("Cap1: ");
-      Serial.print(val1);
+      Serial.println(val1);
       val1 = constrain(val1, 0, maxCapVal);
       val1 = map(val1, 0, maxCapVal, minAngle, maxAngle);
       val1 = constrain(val1, minAngle, maxAngle);
@@ -115,7 +115,7 @@ if(touchRead(capIn2) > capThresh){
   if (!moving2) {
     val2 = touchRead(capIn2);
     Serial.print(" Cap2: ");
-    Serial.print(val2);
+    Serial.println(val2);
     val2 = constrain(val2, 0, maxCapVal);
     val2 = map(val2, 0, maxCapVal, minAngle, maxAngle);
     val2 = constrain(val2, minAngle, maxAngle);
@@ -124,7 +124,7 @@ if(touchRead(capIn2) > capThresh){
   }
 }
 
-  Serial.println("");
+  //Serial.println("");
 
   if (val1 > oldVal1 && moving1) {
     oldVal1++;
