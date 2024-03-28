@@ -6,7 +6,7 @@
 // NWS_forecast_pittsburgh_v1.ino
 //
 // This sketch gets the current chance of precipitation in Pittsburgh
-// 
+//
 // How it works:
 //
 // Once an hour, check the NWS site for the current precipitation probability.
@@ -238,8 +238,12 @@ void loop() {
               String jsonString = https.getString();
               myObject = JSON.parse(jsonString);
               //Serial.println(JSON.typeof(myObject["properties"]["periods"][0]["probabilityOfPrecipitation"]["value"]));
+
               probability = myObject["properties"]["periods"][0]["probabilityOfPrecipitation"]["value"];
+              
+              // Comment this line out when not testing.
               probability = 99;
+              
               // decide if we should rain or not.
 
               if (probability > precipThreshold) {
