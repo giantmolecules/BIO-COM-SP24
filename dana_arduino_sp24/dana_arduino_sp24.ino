@@ -5,8 +5,8 @@ void setup() {
 
 void loop() {
   // Read the analog values from pins 17 and 18
-  int analogValuePin17 = analogRead(17);
-  int analogValuePin18 = analogRead(18);
+  int analogValuePin17 = analogRead(17); // A1
+  int analogValuePin18 = analogRead(18); // A0
 
   // Transmit the values over serial in comma-separated format, terminated with a newline
   Serial.print(analogValuePin17);
