@@ -5,6 +5,13 @@ String inputData = ""; // For storing the incoming serial data
 float x, y;          // Variables to store the current position of the circle
 float prevX, prevY;  // Variables to store the previous position of the circle
 
+
+int minValueX = 0;
+int maxValueX = 8192;
+int minValueY = 0;
+int maxValueY = 8192;
+
+
 void setup() {
   size(500, 500);
   background(255);
@@ -47,8 +54,8 @@ void serialEvent(Serial myPort) {
     println(coordinates);
     if(coordinates.length == 2) {
       // Update the x and y coordinates
-      x = map(float(coordinates[0]), 500, 4000, 0, width);
-      y = map(float(coordinates[1]), 5000, 7000, 0, height);
+      x = map(float(coordinates[0]), minValueX, maxValueX, 0, width);
+      y = map(float(coordinates[1]), minValueY, maxValueY, 0, height);
       //println(x,",",y);
     }
   }
