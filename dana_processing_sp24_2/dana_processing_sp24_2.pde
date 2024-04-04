@@ -6,10 +6,10 @@ float x, y;          // Variables to store the current position of the circle
 float prevX, prevY;  // Variables to store the previous position of the circle
 
 
-int minValueX = 0;
-int maxValueX = 8192;
-int minValueY = 0;
-int maxValueY = 8192;
+int minValueX = 400;
+int maxValueX = 4000;
+int minValueY = 5000;
+int maxValueY = 7000;
 
 
 void setup() {
@@ -31,7 +31,7 @@ void setup() {
 void draw() {
   // Drawing the line from the previous position to the current position
   stroke(0,0,0,20);
-  line(prevX, prevY, x, y);
+  //line(prevX, prevY, x, y);
 
   // Updating the previous position
   prevX = x;
@@ -40,7 +40,7 @@ void draw() {
   // Draw the circle at the current position
   fill(255, 0, 0, 20);
   noStroke();
-  ellipse(x, y, 5, 5);
+  ellipse(x, y, 30, 30);
 }
 
 void serialEvent(Serial myPort) {
