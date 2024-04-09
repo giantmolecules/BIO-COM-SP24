@@ -5,6 +5,7 @@ String inputData = ""; // For storing the incoming serial data
 float x, y;          // Variables to store the current position of the circle
 float prevX, prevY;  // Variables to store the previous position of the circle
 
+// Adjust these values to get best drawing coverage
 
 int minValueX = 400;
 int maxValueX = 4000;
