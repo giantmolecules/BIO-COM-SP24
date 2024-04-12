@@ -4,8 +4,8 @@
 // Define # of samples in filter buffer
 #define BUFLEN 5
 
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
+#include <Adafruit_GFX.h>     // Core graphics library
+#include <Adafruit_ST7789.h>  // Hardware-specific library for ST7789
 #include <SPI.h>
 
 // Use dedicated hardware SPI pins
@@ -25,7 +25,7 @@ int lastTime3 = 0;
 
 int displayInterval = 5;
 int screenInterval = 5;
-int printInterval = 100;
+int printInterval = 50;
 
 int analogVal = 0;
 int averageVal = 0;
@@ -46,7 +46,7 @@ void setup() {
   delay(10);
 
   // initialize TFT
-  tft.init(135, 240); // Init ST7789 240x135
+  tft.init(135, 240);  // Init ST7789 240x135
 
   // Set screen rotation. 3=landscape with usb to the left
   tft.setRotation(3);
@@ -71,7 +71,7 @@ void setup() {
   }
 
   lastTime = millis();
-  
+
   int measure = 500;
   int sleep = 500;
   touchSetCycles(measure, sleep);
@@ -79,7 +79,11 @@ void setup() {
 
 void loop() {
 
+  // For touch sensor
   analogVal = touchRead(14);
+
+  // For analog sensor
+  //analogVal = analogRead(14);
 
   averageVal = updateFilterBuffer(analogVal);
 
@@ -109,8 +113,6 @@ void loop() {
       lastTime3 = millis();
     }
   */
-
-
 }
 
 int updateFilterBuffer(int val) {
@@ -142,7 +144,6 @@ void updateScreenBuffer(int val) {
   int mappedValue = map(val, 0, maxValue, 134, 20);
 
   screenBuffer[239] = mappedValue;
-
 }
 
 void updateDisplay() {
@@ -154,7 +155,7 @@ void updateDisplay() {
     //tft.drawPixel(i, screenBuffer[i], ST77XX_WHITE);
     tft.drawLine(i, screenBuffer[i], i + 1, screenBuffer[i + 1], ST77XX_WHITE);
   }
-  tft.fillRect(0,0,50,18,ST77XX_WHITE);
+  tft.fillRect(0, 0, 50, 18, ST77XX_WHITE);
   tft.setCursor(0, 0);
   tft.print(analogVal);
 }
