@@ -98,7 +98,8 @@ void loop() {
     }
     strip.show();
     Serial.println();
-    delay(10);
+    // change speed here. smaller number = faster
+    delay(50);
     numLines++;
   }
 
