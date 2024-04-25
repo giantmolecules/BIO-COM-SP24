@@ -2,11 +2,11 @@
 #include "SPIFFS.h"
 #include <Adafruit_NeoPixel.h>
 
-#define LED_PIN 6
-#define LED_COUNT 16
+#define LED_PIN 5
+#define LED_COUNT 21
 
 // Declare our NeoPixel strip object:
-Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ400);
 
 int minValue = 8192;
 int maxValue = 0;
@@ -15,13 +15,13 @@ int numLines = 0;
 File file;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   if (!SPIFFS.begin(true)) {
     Serial.println("An Error has occurred while mounting SPIFFS");
     return;
   }
   // Open file for reading
-  file = SPIFFS.open("/values.txt", "r");
+  file = SPIFFS.open("/values-haley.txt", "r");
   if (!file) {
     Serial.println("Failed to open file for reading 1");
     return;
@@ -43,6 +43,9 @@ void setup() {
     }
     numLines++;
   }
+  // adjust these numbers for brightness scale min, max -> 0, 255
+  minValue = 0;
+  maxValue = 4096;
 
   Serial.print(" Number of Lines: ");
   Serial.print(numLines);
@@ -54,10 +57,10 @@ void setup() {
 
   strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
   for(int i = 0; i < LED_COUNT; i++){
-    strip.setPixelColor(i, 255,255,255,0);
+    strip.setPixelColor(i, 255,255,0);
   }
   strip.show();            // Turn OFF all pixels ASAP
-  //strip.setBrightness(0);  // Set BRIGHTNESS to about 1/5 (max = 255)
+  //strip.setBrightness(255);  // Set BRIGHTNESS to about 1/5 (max = 255)
 }
 
 void loop() {
@@ -89,7 +92,7 @@ void loop() {
     Serial.print(numLines);
     Serial.print("  ");
     for(int i = 0; i < LED_COUNT; i++){
-        strip.setPixelColor(i, 155-buffer[i],155-buffer[i],0);
+        strip.setPixelColor(i, buffer[i],buffer[i],0);
         Serial.print(buffer[i]);
         Serial.print(", ");
     }
